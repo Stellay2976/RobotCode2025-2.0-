@@ -31,6 +31,7 @@ public class Delagaefier extends SubsystemBase
     {
         io.updateInputs(inputs);
         Logger.processInputs("Dealgaefier", inputs); 
+        // "Dealgaefier" is the name of the subsystem, and "inputs" is the object containing the inputs to be logged.
     }
 
     public boolean getDeployed()
@@ -66,23 +67,58 @@ public class Delagaefier extends SubsystemBase
         // This ensures that the retract method is called to safely retract the mechanism when the command ends.
     }
 
-    public Command deployCommand() {
+    public Command deployCommand() 
+    // The deployCommand method returns a command that deploys the Dealgaefier mechanism.
+    {
         return Commands.run(() -> io.deploy(), this).finallyDo(interrupted -> io.setIntakeVoltage(0));
+        // The command runs the deploy method of the IO object.
+        // The command is associated with the Delagaefier subsystem (this) and will stop the intake voltage when the command ends or is interrupted.
+        // The finallyDo method is used to specify an action to be performed when the command ends or is interrupted.
+        // In this case, it sets the intake voltage to 0 when the command ends or is interrupted.
+        // The lambda expression () -> io.deploy() is used to define the action to be performed when the command is executed
     }
 
-    public Command shootCommand() {
+    public Command shootCommand() 
+    // The shootCommand method returns a command that shoots the Dealgaefier mechanism.
+    {
         return Commands.run(() -> io.shoot(), this).finallyDo(interrupted -> io.setIntakeVoltage(0));
+        // The command runs the shoot method of the IO object.
+        // The command is associated with the Delagaefier subsystem (this) and will stop the intake voltage when the command ends or is interrupted.
+        // The finallyDo method is used to specify an action to be performed when the command ends or is interrupted.
+        // In this case, it sets the intake voltage to 0 when the command ends or is interrupted.
+        // The lambda expression () -> io.shoot() is used to define the action to be performed when the command is executed.
     }
 
-    public Command retractCommand() {
+    public Command retractCommand() 
+    // The retractCommand method returns a command that retracts the Dealgaefier mechanism.
+    {
         return Commands.run(() -> io.retract(), this).finallyDo(interrupted -> io.setIntakeVoltage(0));
+        // The command runs the retract method of the IO object.
+        // The command is associated with the Delagaefier subsystem (this) and will stop the intake voltage when the command ends or is interrupted.
+        // The finallyDo method is used to specify an action to be performed when the command ends or is interrupted.
+        // In this case, it sets the intake voltage to 0 when the command ends or is interrupted.
+        // The lambda expression () -> io.retract() is used to define the action to be performed when the command is executed.
     }
 
-    public void setDeployVoltage(double volts) {
+    public void setDeployVoltage(double volts) 
+    // The setDeployVoltage method sets the deploy voltage of the Dealgaefier mechanism.
+    {
         io.setDeployVoltage(volts);
+        // It calls the setDeployVoltage method of the IO object with the specified voltage.
+        // The setDeployVoltage method is used to control the deploy voltage of the Dealgaefier mechanism directly, without using a command.
+        // This method can be called from other parts of the code to set the deploy voltage as needed.
+        // The setDeployVoltage method is useful for situations where you want to control the deploy voltage directly, such as during testing or calibration.
+        // The setDeployVoltage method can also be used in conjunction with commands to create more complex behaviors for the Dealgaefier subsystem. **Seem in the setDeployVoltageCommand method.**
     }
 
-    public void setIntakeVoltage(double volts) {
+    public void setIntakeVoltage(double volts) 
+    // The setIntakeVoltage method sets the intake voltage of the Dealgaefier mechanism.
+    {
         io.setIntakeVoltage(volts);
+        // It calls the setIntakeVoltage method of the IO object with the specified voltage.
+        // The setIntakeVoltage method is used to control the intake voltage of the Dealgaefier mechanism directly, without using a command.
+        // This method can be called from other parts of the code to set the intake voltage as needed.
+        // The setIntakeVoltage method is useful for situations where you want to control the intake voltage directly, such as during testing or calibration.
+        // The setIntakeVoltage method can also be used in conjunction with commands to create more complex behaviors for the Dealgaefier subsystem. **Seem in the setIntakeVoltageCommand method.**
     }
 }
